@@ -73,6 +73,14 @@ require('lazy').setup({
   'tpope/vim-fugitive',
   'tpope/vim-rhubarb',
 
+  {
+    'nvim-tree/nvim-tree.lua',
+    lazy = true,
+    dependencies = {
+      'nvim-tree/nvim-web-devicons',
+    },
+  },
+
   -- Detect tabstop and shiftwidth automatically
   'tpope/vim-sleuth',
 
@@ -267,8 +275,8 @@ vim.keymap.set({ 'n', 'v' }, '<Space>', '<Nop>', { silent = true })
 vim.keymap.set('n', 'k', "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
 vim.keymap.set('n', 'j', "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
 
-vim.keymap.set('n', '<C-u>', "<C-u>zz", { expr = true, silent = true })
-vim.keymap.set('n', '<C-d>', "<C-u>zz", { expr = true, silent = true })
+vim.keymap.set('n', '<C-u>', "<C-u>zz", { silent = true })
+vim.keymap.set('n', '<C-d>', "<C-d>zz", { silent = true })
 
 -- Diagnostic keymaps
 vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, { desc = 'Go to previous diagnostic message' })
@@ -286,6 +294,9 @@ vim.api.nvim_create_autocmd('TextYankPost', {
   group = highlight_group,
   pattern = '*',
 })
+
+-- [[ Configure Nvim-Tree ]]
+require('nvim-tree').setup()
 
 -- [[ Configure Telescope ]]
 -- See `:help telescope` and `:help telescope.setup()`
@@ -472,7 +483,7 @@ local on_attach = function(_, bufnr)
 
   -- Create a command `:Format` local to the LSP buffer
   --nmap('<leader>h', vim.lsp.buf.format(), 'Format code')
-  vim.api.nvim_buf_create_user_command(bufnr, 'Format', function(_)
+  vim.api.nvim_buf_create_user_command(bufnr, 'FF', function(_)
     vim.lsp.buf.format()
   end, { desc = 'Format current buffer with LSP' })
 end
