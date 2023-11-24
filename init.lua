@@ -267,8 +267,8 @@ vim.keymap.set({ 'n', 'v' }, '<Space>', '<Nop>', { silent = true })
 vim.keymap.set('n', 'k', "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
 vim.keymap.set('n', 'j', "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
 
-vim.keymap.set('n', '<C-u>', "<C-u>zz", { expr = true, silent = true })
-vim.keymap.set('n', '<C-d>', "<C-u>zz", { expr = true, silent = true })
+vim.keymap.set('n', '<C-u>', "<C-u>zz", { silent = true })
+vim.keymap.set('n', '<C-d>', "<C-d>zz", { silent = true })
 
 -- Diagnostic keymaps
 vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, { desc = 'Go to previous diagnostic message' })
@@ -581,4 +581,4 @@ cmp.setup {
 }
 
 -- The line beneath this is called `modeline`. See `:help modeline`
--- vim: ts=2 sts=2 sw=2 et
+-- vim: ts=4 sts=4 sw=4 et
